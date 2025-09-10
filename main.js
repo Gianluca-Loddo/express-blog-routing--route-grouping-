@@ -2,19 +2,21 @@
 const express = require('express');
 // creiamo una costante app che rappresenta la nostra applicazione
 const app = express();
+
+
 // definiamo una porta su cui il nostro server ascolterà le richieste
 const port = 3000;
+
+// importiamo il router dei post
+const postsRouter = require('./routers/posts');
+
+// usiamo il router dei post per tutte le rotte che iniziano con /posts
+app.use('/posts', postsRouter);
 
 
 // facciamo in modo che il nostro server ascolti le richieste sulla porta definita (avvio del server: ascolto delle richieste)
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
-});
-
-
-// definiamo una route di tipo GET per la root
-app.get('/', (req, res) => {
-    res.send('Hello World! All inizio ero soooooloooo🎶🎵🎤 (pinguini tattici nucleari 🐧)');
 });
 
 // Configurazione della cartella 'images' per servire file statici (in questo caso le nostre immagini)
@@ -30,21 +32,40 @@ const post = [
 ];
 
 
-/* definiamo una route di tipo GET per ottenere tutti i post 
-app.get('/posts', (req, res) => {
-  res.send("mostro tutti i post");
-});*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // BOUNS (INDEX) -> ottenere tutti i post (GET /posts)
 app.get('/posts', (req, res) => {
     res.json(post); // rispondi con i dati in formato JSON
 });
 
-
-
-// iniziamo le operazioni CRUD -> "Create, Read, Update, Delete" (operazioni sulla risorsa) 
-// che corrispondono a ->  "1. INDEX, 2. SHOW, 3. CREATE, 4. UPDATE, 5. MODIFY, 6. DELETE" (nomi delle operazioni/rotte)
-// ogni operazione corrisponde ad un metodo #1 HTTP diverso (GET, POST, PUT, PATCH, DELETE) -> i VERBI HTTP
 
 //1. INDEX (R) -> ottenere tutti i post (GET /posts) -> già fatto sopra
 
@@ -73,11 +94,9 @@ app.patch('/posts/:id', (req, res) => {
     res.send('Modifico parzialmente un post esistente: ' + req.params.id);
 });
 
-// NOTA BENE: PUT e PATCH sono simili, ma PUT sostituisce l'intero oggetto, mentre PATCH modifica solo i campi specificati.
-
 
 //6. DELETE (D) -> eliminare un post esistente (DELETE /posts/:id)
 app.delete('/posts/:id', (req, res) => {
     res.send('Elimino un post esistente: ' + req.params.id);
 });
-
+*/ 
